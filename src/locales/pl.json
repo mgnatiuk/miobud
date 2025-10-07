@@ -1,0 +1,78 @@
+{
+    "menu": {
+        "home": "Strona główna",
+        "services": "Usługi",
+        "projects": "Realizacje",
+        "whyUs": "Dlaczego my",
+        "contact": "Kontakt",
+        "language": "Język",
+        "companyName": "AmiBud"
+    },
+    "home": {
+        "heroTitle": "Profesjonalne remonty i wykończenia",
+        "heroSubtitle": "Tworzymy przestrzenie, w których chcesz żyć. Doświadczenie, jakość i terminowość - to nasza gwarancja."
+    },
+    "hero": {
+        "trusted": "Zaufało nam ponad 500 klientów",
+        "title": "Profesjonalne remonty i wykończenia",
+        "description": "Tworzymy przestrzenie, w których chcesz żyć. Doświadczenie, jakość i terminowość - to nasza gwarancja.",
+        "freeQuote": "Bezpłatna wycena",
+        "seeProjects": "Zobacz realizacje"
+    },
+    "services": {
+        "sectionTitle": "Nasze usługi",
+        "sectionSubtitle": "Kompleksowe rozwiązania remontowe dostosowane do Twoich potrzeb",
+        "remontyMieszkan": "Remonty mieszkań",
+        "wykonczenia": "Wykończenia wnętrz",
+        "praceMurarskie": "Prace murarskie",
+        "lazienkiKuchnie": "Łazienki i kuchnie",
+        "remontyBiur": "Remonty biur",
+        "instalacje": "Instalacje"
+    },
+    "projects": {
+        "sectionTitle": "Nasze realizacje",
+        "sectionSubtitle": "Galeria ukończonych projektów - zobacz nasze portfolio",
+        "project": "Projekt"
+    },
+    "whyUs": {
+        "sectionTitle": "Dlaczego my?",
+        "values": [
+            {
+                "title": "15 lat doświadczenia",
+                "description": "Setki zrealizowanych projektów i zadowolonych klientów. Nasza wiedza to gwarancja najwyższej jakości."
+            },
+            {
+                "title": "Terminowość",
+                "description": "Szanujemy Twój czas. Ustalamy realistyczne terminy i konsekwentnie je dotrzymujemy."
+            },
+            {
+                "title": "Gwarancja jakości",
+                "description": "Udzielamy gwarancji na wszystkie wykonane prace. Twoje zadowolenie to nasz priorytet."
+            },
+            {
+                "title": "Konkurencyjne ceny",
+                "description": "Oferujemy najlepszy stosunek jakości do ceny. Przejrzyste kosztorysy bez ukrytych opłat."
+            },
+            {
+                "title": "Profesjonalny zespół",
+                "description": "Nasi specjaliści to mistrzowie swojego fachu - wykwalifikowani, doświadczeni i zaangażowani."
+            },
+            {
+                "title": "Kompleksowa obsługa",
+                "description": "Od projektu po sprzątanie po remoncie - wszystko w jednym miejscu. Pełna obsługa na każdym etapie."
+            }
+        ]
+    },
+    "reviews": {
+        "sectionTitle": "Opinie z Google",
+        "sectionSubtitle": "Zaufali nam klienci – zobacz, co mówią o naszej pracy!",
+        "moreReviews": "Zobacz więcej opinii",
+        "reviewer": "Anna K.",
+        "location": "Warszawa",
+        "reviewText": "„Świetna firma – pełen profesjonalizm, terminowość i super kontakt. Polecam każdemu!”"
+    },
+    "footer": {
+        "company": "AmiBud",
+        "copyright": "© 2024 AmiBud. Wszystkie prawa zastrzeżone."
+    }
+}

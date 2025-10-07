@@ -1,0 +1,78 @@
+{
+    "menu": {
+        "home": "Home",
+        "services": "Services",
+        "projects": "Projects",
+        "whyUs": "Why Us",
+        "contact": "Contact",
+        "language": "Language",
+        "companyName": "MioBud"
+    },
+    "home": {
+        "heroTitle": "Professional renovations and finishing",
+        "heroSubtitle": "We create spaces you want to live in. Experience, quality, and punctuality are our guarantee."
+    },
+    "hero": {
+        "trusted": "Over 500 clients trusted us",
+        "title": "Professional renovations and finishing",
+        "description": "We create spaces where you want to live. Experience, quality, and timeliness – that’s our guarantee.",
+        "freeQuote": "Free quote",
+        "seeProjects": "See projects"
+    },
+    "services": {
+        "sectionTitle": "Our Services",
+        "sectionSubtitle": "Comprehensive renovation solutions tailored to your needs",
+        "remontyMieszkan": "Apartment renovations",
+        "wykonczenia": "Interior finishing",
+        "praceMurarskie": "Masonry works",
+        "lazienkiKuchnie": "Bathrooms and kitchens",
+        "remontyBiur": "Office renovations",
+        "instalacje": "Installations"
+    },
+    "projects": {
+        "sectionTitle": "Our Projects",
+        "sectionSubtitle": "Gallery of completed projects - see our portfolio",
+        "project": "Project"
+    },
+    "whyUs": {
+        "sectionTitle": "Why us?",
+        "values": [
+            {
+                "title": "15 years of experience",
+                "description": "Hundreds of completed projects and satisfied clients. Our knowledge is a guarantee of the highest quality."
+            },
+            {
+                "title": "Punctuality",
+                "description": "We respect your time. We set realistic deadlines and consistently meet them."
+            },
+            {
+                "title": "Quality guarantee",
+                "description": "We provide a warranty for all works performed. Your satisfaction is our priority."
+            },
+            {
+                "title": "Competitive prices",
+                "description": "We offer the best value for money. Transparent cost estimates without hidden fees."
+            },
+            {
+                "title": "Professional team",
+                "description": "Our specialists are masters of their craft – qualified, experienced, and committed."
+            },
+            {
+                "title": "Comprehensive service",
+                "description": "From design to cleaning after renovation – everything in one place. Full service at every stage."
+            }
+        ]
+    },
+    "reviews": {
+        "sectionTitle": "Google Reviews",
+        "sectionSubtitle": "Clients trusted us – see what they say about our work!",
+        "moreReviews": "See more reviews",
+        "reviewer": "Anna K.",
+        "location": "Warsaw",
+        "reviewText": "“Great company – full professionalism, punctuality, and excellent contact. Highly recommended!”"
+    },
+    "footer": {
+        "company": "AmiBud",
+        "copyright": "© 2024 AmiBud. All rights reserved."
+    }
+}
