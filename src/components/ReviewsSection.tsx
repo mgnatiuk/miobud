@@ -19,7 +19,7 @@ const ReviewsSection = () => {
                         <div key={i} className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:-translate-y-2 transition-all">
                             <div className="flex justify-center mb-4">
                                 {[...Array(5)].map((_, j) => (
-                                    <Star key={j} className="h-5 w-5 text-amber-500" />
+                                    <Star key={j} className="h-5 w-5 text-amber-500" fill="currentColor" />
                                 ))}
                             </div>
                             <p className="text-gray-700 italic mb-4">{r.text}</p>
