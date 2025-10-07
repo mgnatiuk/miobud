@@ -6,13 +6,11 @@
         "whyUs": "Why Us",
         "contact": "Contact",
         "language": "Language",
-        "companyName": "MioBud"
-    },
-    "home": {
-        "heroTitle": "Professional renovations and finishing",
-        "heroSubtitle": "We create spaces you want to live in. Experience, quality, and punctuality are our guarantee."
+        "companyName": "MIOBUD"
     },
     "hero": {
+        "heroTitle": "Professional renovations and finishing",
+        "heroSubtitle": "We create spaces you want to live in. Experience, quality, and punctuality are our guarantee.",
         "trusted": "Over 500 clients trusted us",
         "title": "Professional renovations and finishing",
         "description": "We create spaces where you want to live. Experience, quality, and timeliness – that’s our guarantee.",

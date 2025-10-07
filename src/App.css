@@ -11,6 +11,9 @@
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
+  font-family: "Gabarito", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 900;
 }
 
 .logo:hover {

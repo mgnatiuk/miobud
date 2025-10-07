@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X, Hammer, Globe } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 interface NavbarProps {
     scrollToSection: (id: string) => void;
-    setIsModalOpen: (open: boolean) => void;
+    onOpenModal: () => void; // zamiast setIsModalOpen
 }
 
-const Navbar = ({ scrollToSection, setIsModalOpen }: NavbarProps) => {
+const Navbar = ({ scrollToSection, onOpenModal }: NavbarProps) => {
     const { t, i18n } = useTranslation();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
@@ -38,16 +38,24 @@ const Navbar = ({ scrollToSection, setIsModalOpen }: NavbarProps) => {
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-20">
+                    {/* Logo */}
                     <div className="flex items-center space-x-3">
                         <div className="bg-gradient-to-br from-amber-500 to-amber-600 p-2 rounded-xl">
                             <Hammer className="h-6 w-6 text-white" />
                         </div>
                         <span
-                            className={`text-2xl font-bold ${isScrolled ? "bg-gradient-to-r from-gray-900 to-gray-600" : "bg-gradient-to-r from-white to-gray-200"
+                            className={`text-2xl ${isScrolled ? "bg-gradient-to-r from-gray-900 to-gray-600" : "bg-gradient-to-r from-white to-gray-200"
                                 } bg-clip-text text-transparent`}
+                            style={{
+                                fontFamily: '"Gabarito", sans-serif',
+                                fontOpticalSizing: "auto",
+                                fontWeight: 700,
+                                fontSize: "1.75rem",
+                            }}
                         >
                             {t("menu.companyName")}
                         </span>
+
                     </div>
 
                     {/* Desktop Menu */}
@@ -65,7 +73,7 @@ const Navbar = ({ scrollToSection, setIsModalOpen }: NavbarProps) => {
                             {t("menu.whyUs")}
                         </button>
 
-                        {/* Language Switcher */}
+                        {/* Language Switcher Desktop */}
                         <div className="relative">
                             <button
                                 onClick={() => setShowLangDropdown(!showLangDropdown)}
@@ -92,7 +100,7 @@ const Navbar = ({ scrollToSection, setIsModalOpen }: NavbarProps) => {
                         </div>
 
                         <button
-                            onClick={() => setIsModalOpen(true)}
+                            onClick={onOpenModal}
                             className="ml-3 px-6 py-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-lg font-medium hover:shadow-lg hover:scale-105 transition-all"
                         >
                             {t("menu.contact")}
@@ -125,22 +133,20 @@ const Navbar = ({ scrollToSection, setIsModalOpen }: NavbarProps) => {
 
                         <div className="border-t border-gray-300 my-2"></div>
 
-                        {/* Language Switcher in mobile */}
-                        <div>
-                            <span className="block mb-2 font-semibold">{t("menu.language")}:</span>
+                        {/* Language Switcher Mobile (flags only) */}
+                        <div className="flex space-x-2 mt-2">
                             {languages.map((lang) => (
                                 <button
                                     key={lang.code}
                                     onClick={() => changeLanguage(lang.code)}
-                                    className={`block w-full text-left py-2 hover:text-amber-500 ${i18n.language === lang.code ? "font-bold text-amber-500" : ""
-                                        }`}
+                                    className={`px-2 py-1 text-2xl rounded hover:bg-gray-200 transition-colors ${i18n.language === lang.code ? "bg-gray-200" : ""}`}
                                 >
-                                    {lang.label}
+                                    {lang.code === "pl" ? "🇵🇱" : "🇬🇧"}
                                 </button>
                             ))}
                         </div>
 
-                        <button onClick={() => setIsModalOpen(true)} className="block w-full text-left py-2 font-semibold text-amber-600">
+                        <button onClick={onOpenModal} className="block w-full text-left py-2 font-semibold text-amber-600">
                             {t("menu.contact")}
                         </button>
                     </div>

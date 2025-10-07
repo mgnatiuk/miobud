@@ -6,13 +6,11 @@
         "whyUs": "Dlaczego my",
         "contact": "Kontakt",
         "language": "Język",
-        "companyName": "MioBud"
-    },
-    "home": {
-        "heroTitle": "Profesjonalne remonty i wykończenia",
-        "heroSubtitle": "Tworzymy przestrzenie, w których chcesz żyć. Doświadczenie, jakość i terminowość - to nasza gwarancja."
+        "companyName": "MIOBUD"
     },
     "hero": {
+        "heroTitle": "Profesjonalne remonty i wykończenia",
+        "heroSubtitle": "Tworzymy przestrzenie, w których chcesz żyć. Doświadczenie, jakość i terminowość - to nasza gwarancja.",
         "trusted": "Zaufało nam ponad 500 klientów",
         "title": "Profesjonalne remonty i wykończenia",
         "description": "Tworzymy przestrzenie, w których chcesz żyć. Doświadczenie, jakość i terminowość - to nasza gwarancja.",
