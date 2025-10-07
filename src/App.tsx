@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { X, Hammer, Home, Wrench, CheckCircle, Star } from 'lucide-react';
 import Navbar from "./components/Navbar";
+import { useTranslation } from 'react-i18next';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -8,6 +9,7 @@ function App() {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const [currentImage, setCurrentImage] = useState(0);
   const [offsetY, setOffsetY] = useState(0);
+  const { t, i18n } = useTranslation();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -60,7 +62,7 @@ function App() {
             <div>
               <div className="inline-block mb-4">
                 <span className="px-4 py-2 bg-amber-500/20 backdrop-blur-sm text-amber-300 rounded-full text-sm font-semibold border border-amber-400/30">
-                  Zaufało nam ponad 500 klientów
+                  {t("hero.trusted")}
                 </span>
               </div>
               <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">

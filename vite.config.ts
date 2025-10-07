@@ -7,4 +7,5 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  base: "/miobud/", // nazwa repozytorium na GitHub Pages
 });

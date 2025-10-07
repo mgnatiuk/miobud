@@ -9,13 +9,12 @@ i18n
     .use(initReactI18next)
     .init({
         resources: {
-            pl: pl,
-            en: en
+            pl: { translation: pl }, // <-- opakowujemy w "translation"
+            en: { translation: en }, // <-- opakowujemy w "translation"
         },
         fallbackLng: "pl",
-        interpolation: {
-            escapeValue: false
-        }
+        interpolation: { escapeValue: false },
+        debug: true, // pokaże w konsoli, który język jest używany
     });
 
 export default i18n;
