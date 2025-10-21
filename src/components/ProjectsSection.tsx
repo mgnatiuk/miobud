@@ -125,7 +125,7 @@ const ProjectsSection = () => {
                                 <img
                                     src={project.images[currentImageIndex]}
                                     alt={`${project.name} - ${currentImageIndex + 1}`}
-                                    className="w-full h-[40vh] object-contain"
+                                    className="w-full h-[60vh] object-contain"
                                 />
                                 {/* Strzałki nawigacji */}
                                 {project.images.length > 1 && (
