@@ -37,7 +37,7 @@ const HeroSection = ({ scrollToSection, onOpenModal }: HeroSectionProps) => {
                                 {t("hero.trusted")}
                             </span>
                         </div>
-                        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
+                        <h1 className="text-5xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
                             {t("hero.heroTitle")}
                         </h1>
                         <p className="text-xl md:text-2xl text-gray-100 mb-10 leading-relaxed drop-shadow-lg max-w-2xl">
