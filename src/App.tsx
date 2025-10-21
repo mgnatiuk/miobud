@@ -22,7 +22,7 @@ function App() {
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pt-safe pb-safe">
       <Navbar scrollToSection={scrollToSection} onOpenModal={openModal} />
       <HeroSection scrollToSection={scrollToSection} onOpenModal={openModal} />
       <ServicesSection />
