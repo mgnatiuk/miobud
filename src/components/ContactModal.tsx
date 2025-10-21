@@ -19,7 +19,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
 
         try {
             await new Promise((resolve) => setTimeout(resolve, 1500));
-            const success = true;
+            const success = true; // false for simulating an error
 
             if (success) {
                 setSubmitStatus('success');
