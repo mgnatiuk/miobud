@@ -16,7 +16,9 @@ const Navbar = ({ scrollToSection, onOpenModal, onOpenJobModal }: NavbarProps) =
 
     const languages = [
         { code: "pl", label: "Polski 🇵🇱" },
+        { code: "ua", label: "Українська 🇺🇦" },
         { code: "en", label: "English 🇬🇧" },
+        { code: "ru", label: "Русский" },
     ];
 
     useEffect(() => {
