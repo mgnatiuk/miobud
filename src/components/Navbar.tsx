@@ -15,9 +15,9 @@ const Navbar = ({ scrollToSection, onOpenModal, onOpenJobModal }: NavbarProps) =
     const [showLangDropdown, setShowLangDropdown] = useState(false);
 
     const languages = [
-        { code: "pl", label: "Polski 🇵🇱" },
-        { code: "ua", label: "Українська 🇺🇦" },
-        { code: "en", label: "English 🇬🇧" },
+        { code: "pl", label: "Polski" },
+        { code: "ua", label: "Українська" },
+        { code: "en", label: "English" },
         { code: "ru", label: "Русский" },
     ];
 
