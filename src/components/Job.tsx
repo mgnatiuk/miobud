@@ -2,6 +2,39 @@ import { useState } from "react";
 import { X, CheckCircle, AlertCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
+const TELEGRAM_BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
+const TELEGRAM_CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID;
+
+const sendTelegramMessage = async (message: string): Promise<boolean> => {
+    if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+        console.error('Telegram credentials not configured');
+        return false;
+    }
+
+    try {
+        const response = await fetch(
+            `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: message,
+                    parse_mode: 'HTML',
+                }),
+            }
+        );
+
+        const data = await response.json();
+        return data.ok;
+    } catch (error) {
+        console.error('Failed to send Telegram message:', error);
+        return false;
+    }
+};
+
 const SPECIALIZATIONS = [
     "plumber",
     "electrician",
@@ -66,8 +99,21 @@ const Job = ({ isOpen, onClose }: JobProps) => {
         setSubmitStatus('idle');
 
         try {
-            await new Promise((resolve) => setTimeout(resolve, 1500));
-            const success = true;
+            const specializationText = formData.specialization
+                ? t(`job.specializations.${formData.specialization}`)
+                : 'Nie wybrano';
+
+            const message = `
+<b>🔧 Nowe zgłoszenie o pracę</b>
+
+<b>Imię i nazwisko:</b> ${formData.fullName || 'Nie podano'}
+<b>Specjalizacja:</b> ${specializationText}
+<b>Telefon:</b> ${formData.phone}
+<b>Email:</b> ${formData.email || 'Nie podano'}
+<b>Wiadomość:</b> ${formData.message || 'Brak'}
+            `.trim();
+
+            const success = await sendTelegramMessage(message);
 
             if (success) {
                 setSubmitStatus('success');

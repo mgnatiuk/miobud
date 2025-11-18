@@ -2,6 +2,39 @@ import { useState } from "react";
 import { X, CheckCircle, AlertCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
+const TELEGRAM_BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
+const TELEGRAM_CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID;
+
+const sendTelegramMessage = async (message: string): Promise<boolean> => {
+    if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+        console.error('Telegram credentials not configured');
+        return false;
+    }
+
+    try {
+        const response = await fetch(
+            `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: message,
+                    parse_mode: 'HTML',
+                }),
+            }
+        );
+
+        const data = await response.json();
+        return data.ok;
+    } catch (error) {
+        console.error('Failed to send Telegram message:', error);
+        return false;
+    }
+};
+
 interface ContactModalProps {
     isOpen: boolean;
     onClose: () => void;
@@ -11,8 +44,19 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
     const { t } = useTranslation();
     const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [formData, setFormData] = useState({
+        fullName: '',
+        email: '',
+        phone: '',
+        message: ''
+    });
 
     if (!isOpen) return null;
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -20,11 +64,25 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
         setSubmitStatus('idle');
 
         try {
-            await new Promise((resolve) => setTimeout(resolve, 1500));
-            const success = true;
+            const message = `
+<b>📞 Nowa wiadomość kontaktowa</b>
+
+<b>Imię i nazwisko:</b> ${formData.fullName || 'Nie podano'}
+<b>Email:</b> ${formData.email || 'Nie podano'}
+<b>Telefon:</b> ${formData.phone || 'Nie podano'}
+<b>Wiadomość:</b> ${formData.message || 'Brak'}
+            `.trim();
+
+            const success = await sendTelegramMessage(message);
 
             if (success) {
                 setSubmitStatus('success');
+                setFormData({
+                    fullName: '',
+                    email: '',
+                    phone: '',
+                    message: ''
+                });
                 setTimeout(() => {
                     setSubmitStatus('idle');
                     onClose();
@@ -32,7 +90,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
             } else {
                 setSubmitStatus('error');
             }
-        } catch (error) {
+        } catch {
             setSubmitStatus('error');
         } finally {
             setIsSubmitting(false);
@@ -68,9 +126,12 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                     </div>
                 )}
 
-                <div className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4">
                     <input
                         type="text"
+                        name="fullName"
+                        value={formData.fullName}
+                        onChange={handleChange}
                         placeholder={t("contact.fullName")}
                         className="w-full px-5 py-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-amber-500 focus:bg-white outline-none transition-all"
                         required
@@ -78,6 +139,9 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                     />
                     <input
                         type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
                         placeholder={t("contact.email")}
                         className="w-full px-5 py-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-amber-500 focus:bg-white outline-none transition-all"
                         required
@@ -85,12 +149,18 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                     />
                     <input
                         type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
                         placeholder={t("contact.phone")}
                         className="w-full px-5 py-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-amber-500 focus:bg-white outline-none transition-all"
                         required
                         disabled={isSubmitting}
                     />
                     <textarea
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
                         placeholder={t("contact.message")}
                         rows={4}
                         className="w-full px-5 py-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-amber-500 focus:bg-white resize-none outline-none transition-all"
@@ -98,13 +168,13 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                         disabled={isSubmitting}
                     />
                     <button
-                        onClick={handleSubmit}
+                        type="submit"
                         className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-white px-6 py-4 rounded-xl font-bold hover:shadow-xl hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                         disabled={isSubmitting}
                     >
                         {isSubmitting ? t("contact.sending") : t("contact.submit")}
                     </button>
-                </div>
+                </form>
             </div>
         </div>
     );
