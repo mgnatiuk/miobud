@@ -32,7 +32,7 @@ const Navbar = ({ scrollToSection, onOpenModal, onOpenJobModal }: NavbarProps) =
         setShowLangDropdown(false);
     };
 
-    const currentLang = languages.find((l) => l.code === i18n.language)?.label || "Polski 🇵🇱";
+    const currentLang = languages.find((l) => l.code === i18n.language)?.label || "Polski";
 
     return (
         <nav
@@ -150,7 +150,11 @@ const Navbar = ({ scrollToSection, onOpenModal, onOpenJobModal }: NavbarProps) =
                                     onClick={() => changeLanguage(lang.code)}
                                     className={`px-2 py-1 text-2xl rounded hover:bg-gray-200 transition-colors ${i18n.language === lang.code ? "bg-gray-200" : ""}`}
                                 >
-                                    {lang.code === "pl" ? "🇵🇱" : "🇬🇧"}
+                                    {lang.code === "pl" ? "🇵🇱" :
+                                        lang.code === "en" ? "🇬🇧" :
+                                            lang.code === "ua" ? "🇺🇦" :
+                                                lang.code === "ru" ? "🇷🇺" :
+                                                    "🏳️"}
                                 </button>
                             ))}
                         </div>
