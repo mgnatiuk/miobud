@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface Project {
     id: number;
@@ -44,6 +45,7 @@ const projects: Project[] = [
 ];
 
 const ProjectsSection = () => {
+    const { t } = useTranslation();
     const [selectedProject, setSelectedProject] = useState<number | null>(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const project = projects.find((p) => p.id === selectedProject);
@@ -70,11 +72,11 @@ const ProjectsSection = () => {
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <span className="inline-block px-4 py-2 bg-amber-500/20 text-amber-400 rounded-full text-sm font-semibold mb-4">
-                        PORTFOLIO
+                        {t("projects.badge")}
                     </span>
-                    <h2 className="text-5xl font-bold text-white mb-4">Nasze realizacje</h2>
+                    <h2 className="text-5xl font-bold text-white mb-4">{t("projects.sectionTitle")}</h2>
                     <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-                        Galeria ukończonych projektów - zobacz nasze portfolio
+                        {t("projects.sectionSubtitle")}
                     </p>
                 </div>
 
@@ -167,7 +169,7 @@ const ProjectsSection = () => {
                                                 : "ring-2 ring-gray-600 hover:ring-amber-400 opacity-60 hover:opacity-100"
                                                 }`}
                                         >
-                                            <img src={img} alt={`Miniatura ${idx + 1}`} className="w-full h-full object-cover" />
+                                            <img src={img} alt={`${t("projects.thumbnail")} ${idx + 1}`} className="w-full h-full object-cover" />
                                         </button>
                                     ))}
                                 </div>

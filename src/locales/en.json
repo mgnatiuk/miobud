@@ -58,27 +58,39 @@
         "heroSubtitle": "We create spaces you want to live in. Experience, quality, and punctuality are our guarantee.",
         "trusted": "Over 500 clients trusted us",
         "title": "Professional renovations and finishing",
-        "description": "We create spaces where you want to live. Experience, quality, and timeliness – that’s our guarantee.",
+        "description": "We create spaces where you want to live. Experience, quality, and timeliness – that's our guarantee.",
         "freeQuote": "Free quote",
         "seeProjects": "See projects"
     },
     "services": {
+        "badge": "WHAT WE OFFER",
         "sectionTitle": "Our Services",
         "sectionSubtitle": "Comprehensive renovation solutions tailored to your needs",
         "remontyMieszkan": "Apartment renovations",
+        "remontyMieszkanDesc": "Comprehensive apartment renovations - from demolition to finishing. We design and implement layout changes.",
         "wykonczenia": "Interior finishing",
+        "wykonczeniaDesc": "Painting, tiling, flooring, suspended ceilings - every detail perfected.",
         "praceMurarskie": "Masonry works",
+        "praceMurarskieDesc": "Partition walls, plastering, demolition, structural modifications - solid foundations for every renovation.",
         "lazienkiKuchnie": "Bathrooms and kitchens",
+        "lazienkiKuchnieDesc": "We specialize in comprehensive bathroom and kitchen renovations - installations, fittings, furniture.",
         "remontyBiur": "Office renovations",
-        "instalacje": "Installations"
+        "instalacje": "Installations",
+        "instalacjeDesc": "Professional electrical installations and modernizations in apartments and houses.",
+        "projektowanie": "Interior design",
+        "projektowanieDesc": "We create functional and modern interior designs according to your style."
     },
     "projects": {
+        "badge": "PORTFOLIO",
         "sectionTitle": "Our Projects",
         "sectionSubtitle": "Gallery of completed projects - see our portfolio",
-        "project": "Project"
+        "project": "Project",
+        "thumbnail": "Thumbnail"
     },
     "whyUs": {
+        "badge": "OUR VALUES",
         "sectionTitle": "Why us?",
+        "sectionSubtitle": "What sets us apart from the competition",
         "values": [
             {
                 "title": "15 years of experience",
@@ -107,15 +119,43 @@
         ]
     },
     "reviews": {
+        "badge": "CLIENT REVIEWS",
         "sectionTitle": "Google Reviews",
         "sectionSubtitle": "Clients trusted us – see what they say about our work!",
         "moreReviews": "See more reviews",
-        "reviewer": "Anna K.",
-        "location": "Warsaw",
-        "reviewText": "“Great company – full professionalism, punctuality, and excellent contact. Highly recommended!”"
+        "reviews": [
+            {
+                "name": "Anna K.",
+                "city": "Warsaw",
+                "text": "Great company – full professionalism, punctuality, and excellent contact. Highly recommended!"
+            },
+            {
+                "name": "Michał W.",
+                "city": "Krakow",
+                "text": "Apartment renovation done perfectly, everything according to plan."
+            },
+            {
+                "name": "Karolina P.",
+                "city": "Gdansk",
+                "text": "Professional service, quick contact, and great advice at every stage."
+            }
+        ]
     },
     "footer": {
-        "company": "AmiBud",
-        "copyright": "© 2024 AmiBud. All rights reserved."
+        "company": "MIOBUD",
+        "copyright": "© 2025 MIOBUD. All rights reserved."
+    },
+    "contact": {
+        "title": "Contact us",
+        "fullName": "Full name",
+        "email": "Email",
+        "phone": "Phone",
+        "message": "Message",
+        "submit": "Send message",
+        "sending": "Sending...",
+        "successTitle": "Message sent!",
+        "successMessage": "Thank you for contacting us. We will respond as soon as possible.",
+        "errorTitle": "An error occurred",
+        "errorMessage": "Failed to send message. Please try again."
     }
 }

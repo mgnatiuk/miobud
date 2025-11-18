@@ -1,18 +1,17 @@
 import { Star } from "lucide-react";
-
-const reviews = [
-    { name: "Anna K.", city: "Warszawa", text: "Świetna firma – pełen profesjonalizm, terminowość i super kontakt. Polecam każdemu!" },
-    { name: "Michał W.", city: "Kraków", text: "Remont mieszkania wykonany perfekcyjnie, wszystko zgodnie z planem." },
-    { name: "Karolina P.", city: "Gdańsk", text: "Profesjonalna obsługa, szybki kontakt i świetne doradztwo na każdym etapie." },
-];
+import { useTranslation } from "react-i18next";
 
 const ReviewsSection = () => {
+    const { t } = useTranslation();
+
+    const reviews = t("reviews.reviews", { returnObjects: true }) as Array<{ name: string; city: string; text: string }>;
+
     return (
         <section id="reviews" className="py-24 bg-gradient-to-b from-gray-50 to-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <span className="inline-block px-4 py-2 bg-amber-100 text-amber-600 rounded-full text-sm font-semibold mb-4">OPINIE KLIENTÓW</span>
-                <h2 className="text-5xl font-bold text-gray-900 mb-4">Opinie z Google</h2>
-                <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">Zaufali nam klienci – zobacz, co mówią o naszej pracy!</p>
+                <span className="inline-block px-4 py-2 bg-amber-100 text-amber-600 rounded-full text-sm font-semibold mb-4">{t("reviews.badge")}</span>
+                <h2 className="text-5xl font-bold text-gray-900 mb-4">{t("reviews.sectionTitle")}</h2>
+                <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">{t("reviews.sectionSubtitle")}</p>
 
                 <div className="grid md:grid-cols-3 gap-8">
                     {reviews.map((r, i) => (
@@ -36,7 +35,7 @@ const ReviewsSection = () => {
                         rel="noopener noreferrer"
                         className="inline-block bg-gradient-to-r from-amber-500 to-amber-600 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-xl transition-all"
                     >
-                        Zobacz więcej opinii
+                        {t("reviews.moreReviews")}
                     </a>
                 </div>
             </div>
