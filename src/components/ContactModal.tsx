@@ -8,6 +8,8 @@ const TELEGRAM_CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID;
 const sendTelegramMessage = async (message: string): Promise<boolean> => {
     if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
         console.error('Telegram credentials not configured');
+        console.error('TELEGRAM_BOT_TOKEN:', TELEGRAM_BOT_TOKEN);
+        console.error('TELEGRAM_CHAT_ID:', TELEGRAM_CHAT_ID);
         return false;
     }
 
