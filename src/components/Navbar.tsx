@@ -4,10 +4,11 @@ import { useTranslation } from "react-i18next";
 
 interface NavbarProps {
     scrollToSection: (id: string) => void;
-    onOpenModal: () => void; // zamiast setIsModalOpen
+    onOpenModal: () => void;
+    onOpenJobModal: () => void;
 }
 
-const Navbar = ({ scrollToSection, onOpenModal }: NavbarProps) => {
+const Navbar = ({ scrollToSection, onOpenModal, onOpenJobModal }: NavbarProps) => {
     const { t, i18n } = useTranslation();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
@@ -72,6 +73,9 @@ const Navbar = ({ scrollToSection, onOpenModal }: NavbarProps) => {
                         <button onClick={() => scrollToSection("why-us")} className="px-4 py-2 hover:text-amber-500 transition-all font-medium">
                             {t("menu.whyUs")}
                         </button>
+                        <button onClick={onOpenJobModal} className="px-4 py-2 hover:text-amber-500 transition-all font-medium">
+                            {t("menu.job")}
+                        </button>
 
                         {/* Language Switcher Desktop */}
                         <div className="relative">
@@ -129,6 +133,9 @@ const Navbar = ({ scrollToSection, onOpenModal }: NavbarProps) => {
                         </button>
                         <button onClick={() => scrollToSection("why-us")} className="block w-full text-left py-2">
                             {t("menu.whyUs")}
+                        </button>
+                        <button onClick={onOpenJobModal} className="block w-full text-left py-2">
+                            {t("menu.job")}
                         </button>
 
                         <div className="border-t border-gray-300 my-2"></div>

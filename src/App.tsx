@@ -7,10 +7,12 @@ import WhyUsSection from "./components/WhyUsSection";
 import ReviewsSection from "./components/ReviewsSection";
 import Footer from "./components/Footer";
 import ContactModal from "./components/ContactModal";
+import Job from "./components/Job";
 
 function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isJobModalOpen, setIsJobModalOpen] = useState(false);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -20,10 +22,12 @@ function App() {
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  const openJobModal = () => setIsJobModalOpen(true);
+  const closeJobModal = () => setIsJobModalOpen(false);
 
   return (
     <div className="min-h-screen bg-white pt-safe-top pb-safe-bottom">
-      <Navbar scrollToSection={scrollToSection} onOpenModal={openModal} />
+      <Navbar scrollToSection={scrollToSection} onOpenModal={openModal} onOpenJobModal={openJobModal} />
       <HeroSection scrollToSection={scrollToSection} onOpenModal={openModal} />
       <ServicesSection />
       <ProjectsSection />
@@ -31,6 +35,7 @@ function App() {
       <ReviewsSection />
       <Footer />
       <ContactModal isOpen={isModalOpen} onClose={closeModal} />
+      <Job isOpen={isJobModalOpen} onClose={closeJobModal} />
     </div>
   );
 }
