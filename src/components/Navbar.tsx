@@ -15,10 +15,10 @@ const Navbar = ({ scrollToSection, onOpenModal, onOpenJobModal }: NavbarProps) =
     const [showLangDropdown, setShowLangDropdown] = useState(false);
 
     const languages = [
-        { code: "pl", label: "Polski" },
-        { code: "ua", label: "Українська" },
-        { code: "en", label: "English" },
-        { code: "ru", label: "Русский" },
+        { code: "pl", label: "Polski", flag: "🇵🇱" },
+        { code: "ua", label: "Українська", flag: "🇺🇦" },
+        { code: "en", label: "English", flag: "🇬🇧" },
+        { code: "ru", label: "Русский", flag: "🇷🇺" },
     ];
 
     useEffect(() => {
@@ -32,7 +32,8 @@ const Navbar = ({ scrollToSection, onOpenModal, onOpenJobModal }: NavbarProps) =
         setShowLangDropdown(false);
     };
 
-    const currentLang = languages.find((l) => l.code === i18n.language)?.label || "Polski";
+    const currentLang = languages.find((l) => l.code === i18n.language);
+    const currentLangDisplay = currentLang ? `${currentLang.label}` : "Polski";
 
     return (
         <nav
@@ -86,11 +87,11 @@ const Navbar = ({ scrollToSection, onOpenModal, onOpenJobModal }: NavbarProps) =
                                 className="px-4 py-2 flex items-center hover:text-amber-500 transition-all font-medium"
                             >
                                 <Globe className="w-5 h-5 mr-2" />
-                                {currentLang}
+                                {currentLangDisplay}
                             </button>
 
                             {showLangDropdown && (
-                                <div className="absolute right-0 mt-2 w-40 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 overflow-hidden">
+                                <div className="absolute right-0 mt-2 w-48 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 overflow-hidden">
                                     {languages.map((lang) => (
                                         <button
                                             key={lang.code}
@@ -98,6 +99,7 @@ const Navbar = ({ scrollToSection, onOpenModal, onOpenJobModal }: NavbarProps) =
                                             className={`block w-full text-left px-4 py-2 hover:bg-gray-100 ${i18n.language === lang.code ? "font-bold bg-gray-100" : ""
                                                 }`}
                                         >
+                                            <span className="mr-2">{lang.flag}</span>
                                             {lang.label}
                                         </button>
                                     ))}
@@ -150,11 +152,7 @@ const Navbar = ({ scrollToSection, onOpenModal, onOpenJobModal }: NavbarProps) =
                                     onClick={() => changeLanguage(lang.code)}
                                     className={`px-2 py-1 text-2xl rounded hover:bg-gray-200 transition-colors ${i18n.language === lang.code ? "bg-gray-200" : ""}`}
                                 >
-                                    {lang.code === "pl" ? "🇵🇱" :
-                                        lang.code === "en" ? "🇬🇧" :
-                                            lang.code === "ua" ? "🇺🇦" :
-                                                lang.code === "ru" ? "🇷🇺" :
-                                                    "🏳️"}
+                                    {lang.flag}
                                 </button>
                             ))}
                         </div>
