@@ -34,7 +34,8 @@ jobs:
           ###### End of Repository/Build Configurations ######
         env:
           VITE_TELEGRAM_BOT_TOKEN: ${{ secrets.VITE_TELEGRAM_BOT_TOKEN }}
-          VITE_TELEGRAM_CHAT_ID: ${{ secrets.VITE_TELEGRAM_CHAT_ID }}
+          VITE_TELEGRAM_CHAT_ID_ADMIN: ${{ secrets.VITE_TELEGRAM_CHAT_ID_ADMIN }}
+          VITE_TELEGRAM_CHAT_ID_DENIS: ${{ secrets.VITE_TELEGRAM_CHAT_ID_DENIS }}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'

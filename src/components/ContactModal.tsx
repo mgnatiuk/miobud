@@ -3,34 +3,41 @@ import { X, CheckCircle, AlertCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 const TELEGRAM_BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
-const TELEGRAM_CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID;
+const TELEGRAM_CHAT_ID_ADMIN = import.meta.env.VITE_TELEGRAM_CHAT_ID_ADMIN;
+const TELEGRAM_CHAT_ID_DENIS = import.meta.env.VITE_TELEGRAM_CHAT_ID_DENIS;
 
 const sendTelegramMessage = async (message: string): Promise<boolean> => {
-    if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+    if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID_ADMIN || !TELEGRAM_CHAT_ID_DENIS) {
         console.error('Telegram credentials not configured');
         console.error('TELEGRAM_BOT_TOKEN:', TELEGRAM_BOT_TOKEN);
-        console.error('TELEGRAM_CHAT_ID:', TELEGRAM_CHAT_ID);
+        console.error('TELEGRAM_CHAT_ID_ADMIN:', TELEGRAM_CHAT_ID_ADMIN);
+        console.error('TELEGRAM_CHAT_ID_DENIS:', TELEGRAM_CHAT_ID_DENIS);
         return false;
     }
 
     try {
-        const response = await fetch(
-            `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    chat_id: TELEGRAM_CHAT_ID,
-                    text: message,
-                    parse_mode: 'HTML',
-                }),
-            }
+        const chatIds = [TELEGRAM_CHAT_ID_ADMIN, TELEGRAM_CHAT_ID_DENIS];
+        const promises = chatIds.map(chatId =>
+            fetch(
+                `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: message,
+                        parse_mode: 'HTML',
+                    }),
+                }
+            )
         );
 
-        const data = await response.json();
-        return data.ok;
+        const responses = await Promise.all(promises);
+        const results = await Promise.all(responses.map(r => r.json()));
+
+        return results.every(data => data.ok);
     } catch (error) {
         console.error('Failed to send Telegram message:', error);
         return false;
