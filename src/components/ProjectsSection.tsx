@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { X } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 interface Project {
@@ -50,54 +50,73 @@ const ProjectsSection = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const project = projects.find((p) => p.id === selectedProject);
 
-    const nextImage = () => {
+    const nextImage = useCallback(() => {
         if (project) {
             setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
         }
-    };
+    }, [project]);
 
-    const prevImage = () => {
+    const prevImage = useCallback(() => {
         if (project) {
             setCurrentImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
         }
-    };
+    }, [project]);
+
+    const closeGallery = useCallback(() => {
+        setSelectedProject(null);
+    }, []);
 
     const openGallery = (projectId: number) => {
         setSelectedProject(projectId);
         setCurrentImageIndex(0);
     };
 
+    // Keyboard navigation
+    useEffect(() => {
+        if (!selectedProject) return;
+
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') closeGallery();
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'ArrowRight') nextImage();
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [selectedProject, closeGallery, prevImage, nextImage]);
+
     return (
-        <section id="projects" className="py-24 bg-gray-900 relative overflow-hidden">
+        <section id="projects" className="py-32 bg-black relative overflow-hidden">
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
-                    <span className="inline-block px-4 py-2 bg-amber-500/20 text-amber-400 rounded-full text-sm font-semibold mb-4">
-                        {t("projects.badge")}
-                    </span>
-                    <h2 className="text-5xl font-bold text-white mb-4">{t("projects.sectionTitle")}</h2>
-                    <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+                <div className="mb-20">
+                    <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-[1.1]">
+                        {t("projects.sectionTitle")}
+                    </h2>
+                    <p className="text-2xl text-gray-400 max-w-3xl leading-relaxed">
                         {t("projects.sectionSubtitle")}
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {projects.map((p) => (
                         <div
                             key={p.id}
-                            className="relative cursor-pointer overflow-hidden rounded-2xl shadow-lg transition-all duration-500 hover:shadow-2xl"
+                            className="group relative cursor-pointer overflow-hidden transition-all duration-300"
                             onClick={() => openGallery(p.id)}
                         >
-                            <img
-                                src={p.cover}
-                                alt={p.name}
-                                className="w-full h-80 object-cover rounded-2xl transition-transform duration-500 hover:scale-105"
-                            />
-                            <div className="absolute inset-0 bg-black/40 hover:bg-amber-500/30 transition-colors duration-300 flex items-end p-5">
-                                <div className="w-full">
-                                    <h3 className="text-xl md:text-2xl font-bold text-white drop-shadow-lg transition-all duration-300">
+                            <div className="aspect-[4/3] overflow-hidden">
+                                <img
+                                    src={p.cover}
+                                    alt={p.name}
+                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                />
+                            </div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6">
+                                <div>
+                                    <h3 className="text-xl md:text-2xl font-bold text-white mb-1">
                                         {p.name}
                                     </h3>
-                                    <p className="text-sm md:text-base text-white/80 drop-shadow-md">
+                                    <p className="text-sm md:text-base text-gray-300">
                                         {p.description}
                                     </p>
                                 </div>
@@ -108,73 +127,86 @@ const ProjectsSection = () => {
 
                 {/* Modal z galerią */}
                 {project && (
-                    <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-4">
-                        <button
-                            onClick={() => setSelectedProject(null)}
-                            className="absolute top-4 right-4 text-white hover:text-amber-400 transition-colors z-10"
+                    <div
+                        className="fixed inset-0 z-50 bg-black flex flex-col"
+                        onClick={closeGallery}
+                    >
+                        {/* Header */}
+                        <div className="flex items-center justify-between p-4 md:p-6 border-b border-gray-800">
+                            <div className="flex-1">
+                                <h3 className="text-xl md:text-2xl font-bold text-white">{project.name}</h3>
+                                <p className="text-sm md:text-base text-gray-400 mt-1">{project.description}</p>
+                            </div>
+                            <button
+                                onClick={closeGallery}
+                                className="ml-4 text-gray-400 hover:text-white transition-colors p-2"
+                                aria-label="Close gallery"
+                            >
+                                <X className="h-6 w-6 md:h-8 md:w-8" />
+                            </button>
+                        </div>
+
+                        {/* Main image area */}
+                        <div
+                            className="flex-1 relative flex items-center justify-center p-4 md:p-8"
+                            onClick={(e) => e.stopPropagation()}
                         >
-                            <X className="h-10 w-10" />
-                        </button>
+                            <img
+                                src={project.images[currentImageIndex]}
+                                alt={`${project.name} - ${currentImageIndex + 1}`}
+                                className="max-h-full max-w-full object-contain"
+                            />
 
-                        <div className="w-full max-w-6xl">
-                            <div className="text-center mb-6">
-                                <h3 className="text-3xl md:text-4xl font-bold text-white mb-2">{project.name}</h3>
-                                <p className="text-gray-300 text-lg">{project.description}</p>
-                            </div>
-
-                            {/* Główny obraz */}
-                            <div className="relative bg-black rounded-2xl overflow-hidden mb-6">
-                                <img
-                                    src={project.images[currentImageIndex]}
-                                    alt={`${project.name} - ${currentImageIndex + 1}`}
-                                    className="w-full h-[50vh] object-contain"
-                                />
-                                {/* Strzałki nawigacji */}
-                                {project.images.length > 1 && (
-                                    <>
-                                        <button
-                                            onClick={prevImage}
-                                            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-amber-500/80 text-white p-3 rounded-full transition-all"
-                                        >
-                                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                            </svg>
-                                        </button>
-                                        <button
-                                            onClick={nextImage}
-                                            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-amber-500/80 text-white p-3 rounded-full transition-all"
-                                        >
-                                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                            </svg>
-                                        </button>
-                                    </>
-                                )}
-
-                                {/* Licznik zdjęć */}
-                                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm">
-                                    {currentImageIndex + 1} / {project.images.length}
-                                </div>
-                            </div>
-
-                            {/* Miniatury */}
+                            {/* Navigation arrows */}
                             {project.images.length > 1 && (
-                                <div className="flex gap-3 justify-center overflow-x-auto pb-2 mt-10">
+                                <>
+                                    <button
+                                        onClick={prevImage}
+                                        className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-black/80 hover:bg-[#C9A962] text-white p-2 md:p-3 transition-all"
+                                        aria-label="Previous image"
+                                    >
+                                        <ChevronLeft className="h-6 w-6 md:h-8 md:w-8" />
+                                    </button>
+                                    <button
+                                        onClick={nextImage}
+                                        className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-black/80 hover:bg-[#C9A962] text-white p-2 md:p-3 transition-all"
+                                        aria-label="Next image"
+                                    >
+                                        <ChevronRight className="h-6 w-6 md:h-8 md:w-8" />
+                                    </button>
+                                </>
+                            )}
+
+                            {/* Counter */}
+                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/80 text-white px-4 py-2 rounded-full text-sm">
+                                {currentImageIndex + 1} / {project.images.length}
+                            </div>
+                        </div>
+
+                        {/* Thumbnails footer */}
+                        {project.images.length > 1 && (
+                            <div className="border-t border-gray-800 p-4 md:p-6">
+                                <div className="flex gap-3 md:gap-4 justify-start md:justify-center overflow-x-auto pb-2">
                                     {project.images.map((img, idx) => (
                                         <button
                                             key={idx}
                                             onClick={() => setCurrentImageIndex(idx)}
-                                            className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden transition-all mt-10 ${idx === currentImageIndex
-                                                ? "ring-4 ring-amber-500 scale-110"
-                                                : "ring-2 ring-gray-600 hover:ring-amber-400 opacity-60 hover:opacity-100"
-                                                }`}
+                                            className={`flex-shrink-0 w-16 h-16 md:w-20 md:h-20 overflow-hidden transition-all ${
+                                                idx === currentImageIndex
+                                                    ? "ring-2 md:ring-4 ring-[#C9A962] opacity-100"
+                                                    : "ring-1 md:ring-2 ring-gray-700 opacity-50 hover:opacity-100"
+                                            }`}
                                         >
-                                            <img src={img} alt={`${t("projects.thumbnail")} ${idx + 1}`} className="w-full h-full object-cover" />
+                                            <img
+                                                src={img}
+                                                alt={`Thumbnail ${idx + 1}`}
+                                                className="w-full h-full object-cover"
+                                            />
                                         </button>
                                     ))}
                                 </div>
-                            )}
-                        </div>
+                            </div>
+                        )}
                     </div>
                 )}
             </div>

@@ -7,7 +7,7 @@
         "contact": "Kontakt",
         "job": "Praca",
         "language": "Język",
-        "companyName": "MIOBUD"
+        "companyName": "dhmg."
     },
     "job": {
         "title": "Aplikuj o pracę",
@@ -80,12 +80,21 @@
         "projektowanie": "Projektowanie wnętrz",
         "projektowanieDesc": "Tworzymy funkcjonalne i nowoczesne aranżacje wnętrz zgodnie z Twoim stylem."
     },
+    "process": {
+        "sectionTitle": "Jak pracujemy",
+        "sectionSubtitle": "Kompleksowe wykończenie wnętrza krok po kroku"
+    },
     "projects": {
         "badge": "PORTFOLIO",
         "sectionTitle": "Nasze realizacje",
         "sectionSubtitle": "Galeria ukończonych projektów - zobacz nasze portfolio",
         "project": "Projekt",
         "thumbnail": "Miniatura"
+    },
+    "offers": {
+        "sectionTitle": "Nasza Oferta",
+        "sectionSubtitle": "Wybierz pakiet wykończeniowy dopasowany do Twoich potrzeb i budżetu",
+        "selectPackage": "Wybierz pakiet"
     },
     "whyUs": {
         "badge": "NASZE WARTOŚCI",
@@ -142,15 +151,18 @@
         ]
     },
     "footer": {
-        "company": "MIOBUD",
+        "company": "dhmg.",
         "description": "Profesjonalne remonty i wykończenia wnętrz. 15 lat doświadczenia w branży budowlanej.",
         "quickLinks": "Szybkie linki",
         "contactInfo": "Kontakt",
         "followUs": "Obserwuj nas",
+        "addressLabel": "Adres",
+        "phoneLabel": "Telefon",
+        "emailLabel": "Email",
         "address": "ul. Przykładowa 123, 00-001 Warszawa",
         "phone": "+48 123 456 789",
         "email": "kontakt@miobud.pl",
-        "copyright": "© 2025 MIOBUD. Wszystkie prawa zastrzeżone.",
+        "copyright": "© 2025 dhmg. Wszystkie prawa zastrzeżone.",
         "madeWith": "Wykonane z"
     },
     "contact": {
@@ -165,5 +177,14 @@
         "successMessage": "Dziękujemy za kontakt. Odpowiemy najszybciej jak to możliwe.",
         "errorTitle": "Wystąpił błąd",
         "errorMessage": "Nie udało się wysłać wiadomości. Spróbuj ponownie."
+    },
+    "consultation": {
+        "title": "Spotkaj się\nz Ekspertem Wnętrz",
+        "point1": "Odkryj pełną ofertę kompleksowego wykończenia.",
+        "point2": "Zainspiruj się wachlarzem materiałów i gotowych rozwiązań.",
+        "point3": "Poznaj wycenę i proponowany termin realizacji prac.",
+        "point4": "Porozmawiaj z Ekspertem Wnętrz online lub w Showroomie.",
+        "bookMeeting": "Zarezerwuj spotkanie",
+        "playVideo": "WŁĄCZ WIDEO"
     }
 }
