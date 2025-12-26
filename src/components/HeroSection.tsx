@@ -31,10 +31,10 @@ const HeroSection = ({ scrollToSection, onOpenModal }: HeroSectionProps) => {
                             {t("hero.trusted")}
                         </span>
                     </div>
-                    <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-white mb-8 leading-[1.05] max-w-5xl">
+                    <h1 className="text-[3.3rem] sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-[1.05] max-w-5xl">
                         {t("hero.heroTitle")}
                     </h1>
-                    <p className="text-lg md:text-xl text-gray-300 mb-12 leading-relaxed max-w-2xl font-light">
+                    <p className="text-base md:text-lg text-gray-300 mb-12 leading-relaxed max-w-2xl font-light">
                         {t("hero.heroSubtitle")}
                     </p>
                     <div className="flex flex-col sm:flex-row gap-6">

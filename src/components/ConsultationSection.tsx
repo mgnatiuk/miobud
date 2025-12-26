@@ -17,7 +17,7 @@ const ConsultationSection = ({ onOpenModal }: { onOpenModal: () => void }) => {
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
                     {/* Left side - Text content */}
                     <div>
-                        <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight">
+                        <h2 className="text-[2.9rem] md:text-5xl lg:text-6xl font-bold text-gray-900 mb-8 leading-tight">
                             {t("consultation.title") || (
                                 <>
                                     Spotkaj się<br />
