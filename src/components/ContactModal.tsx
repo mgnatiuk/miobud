@@ -107,13 +107,13 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
     };
 
     return (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
-            <div className="bg-white rounded-3xl p-10 shadow-2xl max-w-lg w-full relative mx-5 md:mx-0 animate-fadeInScale">
-                <button onClick={onClose} className="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50">
+            <div className="bg-gray-900 rounded-3xl p-10 shadow-2xl max-w-lg w-full relative mx-5 md:mx-0 animate-fadeInScale border border-gray-800">
+                <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-[#C9A962]">
                     <X className="h-6 w-6" />
                 </button>
 
-                <h3 className="text-3xl font-bold text-gray-900 mb-8 text-center">{t("contact.title")}</h3>
+                <h3 className="text-3xl font-bold text-white mb-8 text-center">{t("contact.title")}</h3>
 
                 {submitStatus === 'success' && (
                     <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center gap-3">
@@ -142,7 +142,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                         value={formData.fullName}
                         onChange={handleChange}
                         placeholder={t("contact.fullName")}
-                        className="w-full px-5 py-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-amber-500 focus:bg-white outline-none transition-all"
+                        className="w-full px-5 py-4 rounded-xl bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-[#C9A962] focus:bg-gray-800 outline-none transition-all"
                         required
                         disabled={isSubmitting}
                     />
@@ -152,7 +152,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder={t("contact.email")}
-                        className="w-full px-5 py-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-amber-500 focus:bg-white outline-none transition-all"
+                        className="w-full px-5 py-4 rounded-xl bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-[#C9A962] focus:bg-gray-800 outline-none transition-all"
                         required
                         disabled={isSubmitting}
                     />
@@ -162,7 +162,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder={t("contact.phone")}
-                        className="w-full px-5 py-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-amber-500 focus:bg-white outline-none transition-all"
+                        className="w-full px-5 py-4 rounded-xl bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-[#C9A962] focus:bg-gray-800 outline-none transition-all"
                         required
                         disabled={isSubmitting}
                     />
@@ -172,13 +172,13 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                         onChange={handleChange}
                         placeholder={t("contact.message")}
                         rows={4}
-                        className="w-full px-5 py-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-amber-500 focus:bg-white resize-none outline-none transition-all"
+                        className="w-full px-5 py-4 rounded-xl bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-[#C9A962] resize-none outline-none transition-all"
                         required
                         disabled={isSubmitting}
                     />
                     <button
                         type="submit"
-                        className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-white px-6 py-4 rounded-xl font-bold hover:shadow-xl hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                        className="w-full bg-[#C9A962] text-black px-6 py-4 rounded-xl font-bold hover:bg-[#B89952] hover:shadow-xl hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                         disabled={isSubmitting}
                     >
                         {isSubmitting ? t("contact.sending") : t("contact.submit")}

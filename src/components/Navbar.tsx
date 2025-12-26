@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Menu, X, Hammer, Globe } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 interface NavbarProps {
@@ -37,46 +37,39 @@ const Navbar = ({ scrollToSection, onOpenModal, onOpenJobModal }: NavbarProps) =
 
     return (
         <nav
-            className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled ? "bg-white shadow-md text-gray-900" : "bg-transparent text-white"
+            className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled ? "bg-black/90 backdrop-blur-sm shadow-md text-white" : "bg-transparent text-white"
                 }`}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-20">
                     {/* Logo */}
                     <div className="flex items-center space-x-3">
-                        <div className="bg-gradient-to-br from-amber-500 to-amber-600 p-2 rounded-xl">
-                            <Hammer className="h-6 w-6 text-white" />
-                        </div>
                         <span
-                            className={`text-2xl ${isScrolled ? "bg-gradient-to-r from-gray-900 to-gray-600" : "bg-gradient-to-r from-white to-gray-200"
-                                } bg-clip-text text-transparent`}
+                            className="text-4xl text-white font-bold"
                             style={{
-                                fontFamily: '"Gabarito", sans-serif',
-                                fontOpticalSizing: "auto",
-                                fontWeight: 700,
-                                fontSize: "1.75rem",
+                                fontFamily: 'system-ui, -apple-system, sans-serif',
+                                letterSpacing: '-0.02em',
                             }}
                         >
-                            {t("menu.companyName")}
+                            dhmg.
                         </span>
-
                     </div>
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex items-center space-x-1">
-                        <button onClick={() => scrollToSection("home")} className="px-4 py-2 hover:text-amber-500 transition-all font-medium">
+                        <button onClick={() => scrollToSection("home")} className="px-4 py-2 hover:text-[#C9A962] transition-all font-medium">
                             {t("menu.home")}
                         </button>
-                        <button onClick={() => scrollToSection("services")} className="px-4 py-2 hover:text-amber-500 transition-all font-medium">
+                        <button onClick={() => scrollToSection("services")} className="px-4 py-2 hover:text-[#C9A962] transition-all font-medium">
                             {t("menu.services")}
                         </button>
-                        <button onClick={() => scrollToSection("projects")} className="px-4 py-2 hover:text-amber-500 transition-all font-medium">
+                        <button onClick={() => scrollToSection("projects")} className="px-4 py-2 hover:text-[#C9A962] transition-all font-medium">
                             {t("menu.projects")}
                         </button>
-                        <button onClick={() => scrollToSection("why-us")} className="px-4 py-2 hover:text-amber-500 transition-all font-medium">
+                        <button onClick={() => scrollToSection("why-us")} className="px-4 py-2 hover:text-[#C9A962] transition-all font-medium">
                             {t("menu.whyUs")}
                         </button>
-                        <button onClick={onOpenJobModal} className="px-4 py-2 hover:text-amber-500 transition-all font-medium">
+                        <button onClick={onOpenJobModal} className="px-4 py-2 hover:text-[#C9A962] transition-all font-medium">
                             {t("menu.job")}
                         </button>
 
@@ -84,19 +77,19 @@ const Navbar = ({ scrollToSection, onOpenModal, onOpenJobModal }: NavbarProps) =
                         <div className="relative">
                             <button
                                 onClick={() => setShowLangDropdown(!showLangDropdown)}
-                                className="px-4 py-2 flex items-center hover:text-amber-500 transition-all font-medium"
+                                className="px-4 py-2 flex items-center hover:text-[#C9A962] transition-all font-medium"
                             >
                                 <Globe className="w-5 h-5 mr-2" />
                                 {currentLangDisplay}
                             </button>
 
                             {showLangDropdown && (
-                                <div className="absolute right-0 mt-2 w-48 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 overflow-hidden">
+                                <div className="absolute right-0 mt-2 w-48 bg-black text-white rounded-lg shadow-lg border border-gray-700 overflow-hidden">
                                     {languages.map((lang) => (
                                         <button
                                             key={lang.code}
                                             onClick={() => changeLanguage(lang.code)}
-                                            className={`block w-full text-left px-4 py-2 hover:bg-gray-100 ${i18n.language === lang.code ? "font-bold bg-gray-100" : ""
+                                            className={`block w-full text-left px-4 py-2 hover:bg-gray-800 ${i18n.language === lang.code ? "font-bold bg-gray-800" : ""
                                                 }`}
                                         >
                                             <span className="mr-2">{lang.flag}</span>
@@ -109,14 +102,14 @@ const Navbar = ({ scrollToSection, onOpenModal, onOpenJobModal }: NavbarProps) =
 
                         <button
                             onClick={onOpenModal}
-                            className="ml-3 px-6 py-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-lg font-medium hover:shadow-lg hover:scale-105 transition-all"
+                            className="ml-3 px-6 py-2 bg-[#C9A962] text-black rounded-lg font-medium hover:bg-[#B89952] hover:shadow-lg hover:scale-105 transition-all"
                         >
                             {t("menu.contact")}
                         </button>
                     </div>
 
                     {/* Mobile Menu Button */}
-                    <button onClick={() => setIsMenuOpen(!isMenuOpen)} className={`md:hidden ${isScrolled ? "text-gray-900" : "text-white"}`}>
+                    <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden text-white">
                         {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
                     </button>
                 </div>
@@ -124,7 +117,7 @@ const Navbar = ({ scrollToSection, onOpenModal, onOpenJobModal }: NavbarProps) =
 
             {/* Mobile Menu */}
             {isMenuOpen && (
-                <div className={`md:hidden ${isScrolled ? "bg-white text-gray-900" : "bg-black/70 text-white"} backdrop-blur-md border-t border-white/10`}>
+                <div className="md:hidden bg-black text-white backdrop-blur-md border-t border-gray-700">
                     <div className="px-4 py-4 space-y-3">
                         <button onClick={() => scrollToSection("home")} className="block w-full text-left py-2">
                             {t("menu.home")}
@@ -142,7 +135,7 @@ const Navbar = ({ scrollToSection, onOpenModal, onOpenJobModal }: NavbarProps) =
                             {t("menu.job")}
                         </button>
 
-                        <div className="border-t border-gray-300 my-2"></div>
+                        <div className="border-t border-gray-700 my-2"></div>
 
                         {/* Language Switcher Mobile (flags only) */}
                         <div className="flex space-x-2 mt-2">
@@ -150,14 +143,14 @@ const Navbar = ({ scrollToSection, onOpenModal, onOpenJobModal }: NavbarProps) =
                                 <button
                                     key={lang.code}
                                     onClick={() => changeLanguage(lang.code)}
-                                    className={`px-2 py-1 text-2xl rounded hover:bg-gray-200 transition-colors ${i18n.language === lang.code ? "bg-gray-200" : ""}`}
+                                    className={`px-2 py-1 text-2xl rounded hover:bg-gray-800 transition-colors ${i18n.language === lang.code ? "bg-gray-800" : ""}`}
                                 >
                                     {lang.flag}
                                 </button>
                             ))}
                         </div>
 
-                        <button onClick={onOpenModal} className="block w-full text-left py-2 font-semibold text-amber-600">
+                        <button onClick={onOpenModal} className="block w-full text-left py-2 font-semibold text-[#C9A962]">
                             {t("menu.contact")}
                         </button>
                     </div>

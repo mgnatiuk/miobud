@@ -7,7 +7,7 @@
         "contact": "Contact",
         "job": "Career",
         "language": "Language",
-        "companyName": "MIOBUD"
+        "companyName": "dhmg."
     },
     "job": {
         "title": "Apply for a Job",
@@ -80,12 +80,21 @@
         "projektowanie": "Interior design",
         "projektowanieDesc": "We create functional and modern interior designs according to your style."
     },
+    "process": {
+        "sectionTitle": "How we work",
+        "sectionSubtitle": "Comprehensive interior finishing step by step"
+    },
     "projects": {
         "badge": "PORTFOLIO",
         "sectionTitle": "Our Projects",
         "sectionSubtitle": "Gallery of completed projects - see our portfolio",
         "project": "Project",
         "thumbnail": "Thumbnail"
+    },
+    "offers": {
+        "sectionTitle": "Our Offer",
+        "sectionSubtitle": "Choose a finishing package tailored to your needs and budget",
+        "selectPackage": "Select package"
     },
     "whyUs": {
         "badge": "OUR VALUES",
@@ -142,15 +151,18 @@
         ]
     },
     "footer": {
-        "company": "MIOBUD",
+        "company": "dhmg.",
         "description": "Professional renovations and interior finishing. 15 years of experience in the construction industry.",
         "quickLinks": "Quick links",
         "contactInfo": "Contact",
         "followUs": "Follow us",
+        "addressLabel": "Address",
+        "phoneLabel": "Phone",
+        "emailLabel": "Email",
         "address": "ul. Przykładowa 123, 00-001 Warsaw",
         "phone": "+48 123 456 789",
         "email": "kontakt@miobud.pl",
-        "copyright": "© 2025 MIOBUD. All rights reserved.",
+        "copyright": "© 2025 dhmg. All rights reserved.",
         "madeWith": "Made with"
     },
     "contact": {
@@ -165,5 +177,14 @@
         "successMessage": "Thank you for contacting us. We will respond as soon as possible.",
         "errorTitle": "An error occurred",
         "errorMessage": "Failed to send message. Please try again."
+    },
+    "consultation": {
+        "title": "Meet with\nInterior Expert",
+        "point1": "Discover the full offer of comprehensive finishing.",
+        "point2": "Get inspired by a range of materials and ready-made solutions.",
+        "point3": "Learn about pricing and proposed project timeline.",
+        "point4": "Talk to an Interior Expert online or in the Showroom.",
+        "bookMeeting": "Book a meeting",
+        "playVideo": "PLAY VIDEO"
     }
 }

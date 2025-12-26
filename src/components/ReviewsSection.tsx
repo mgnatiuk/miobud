@@ -6,34 +6,66 @@ const ReviewsSection = () => {
 
     const reviews = t("reviews.reviews", { returnObjects: true }) as Array<{ name: string; city: string; text: string }>;
 
-    return (
-        <section id="reviews" className="py-24 bg-gradient-to-b from-gray-50 to-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <span className="inline-block px-4 py-2 bg-amber-100 text-amber-600 rounded-full text-sm font-semibold mb-4">{t("reviews.badge")}</span>
-                <h2 className="text-5xl font-bold text-gray-900 mb-4">{t("reviews.sectionTitle")}</h2>
-                <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">{t("reviews.sectionSubtitle")}</p>
+    // Google colors for each letter
+    const googleColors = ['#4285F4', '#EA4335', '#FBBC04', '#4285F4', '#34A853', '#EA4335'];
 
-                <div className="grid md:grid-cols-3 gap-8">
+    const renderTitle = () => {
+        const title = t("reviews.sectionTitle");
+        const parts = title.split("Google");
+
+        if (parts.length > 1) {
+            return (
+                <>
+                    {parts[0]}
+                    <span>
+                        {['G', 'o', 'o', 'g', 'l', 'e'].map((letter, idx) => (
+                            <span key={idx} style={{ color: googleColors[idx] }}>
+                                {letter}
+                            </span>
+                        ))}
+                    </span>
+                    {parts[1]}
+                </>
+            );
+        }
+        return title;
+    };
+
+    return (
+        <section id="reviews" className="py-32 bg-black relative overflow-hidden">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="mb-20">
+                    <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-[1.1]">
+                        {renderTitle()}
+                    </h2>
+                    <p className="text-2xl text-gray-400 max-w-3xl leading-relaxed">
+                        {t("reviews.sectionSubtitle")}
+                    </p>
+                </div>
+
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                     {reviews.map((r, i) => (
-                        <div key={i} className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:-translate-y-2 transition-all">
-                            <div className="flex justify-center mb-4">
+                        <div key={i} className="group bg-white/5 backdrop-blur-sm p-10 border border-white/10 hover:bg-white/10 hover:border-[#C9A962]/30 transition-all duration-300">
+                            <div className="flex gap-1 mb-6">
                                 {[...Array(5)].map((_, j) => (
-                                    <Star key={j} className="h-5 w-5 text-amber-500" fill="currentColor" />
+                                    <Star key={j} className="h-5 w-5 text-[#C9A962]" fill="currentColor" />
                                 ))}
                             </div>
-                            <p className="text-gray-700 italic mb-4">{r.text}</p>
-                            <h4 className="font-semibold text-gray-900">{r.name}</h4>
-                            <p className="text-sm text-gray-500">{r.city}</p>
+                            <p className="text-gray-300 mb-8 leading-relaxed text-lg">{r.text}</p>
+                            <div>
+                                <h4 className="font-bold text-white text-lg">{r.name}</h4>
+                                <p className="text-gray-400">{r.city}</p>
+                            </div>
                         </div>
                     ))}
                 </div>
 
-                <div className="mt-12">
+                <div>
                     <a
                         href="https://www.google.com/maps/place/AmiBud"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-block bg-gradient-to-r from-amber-500 to-amber-600 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-xl transition-all"
+                        className="inline-block bg-[#C9A962] text-black px-10 py-4 text-lg font-bold hover:bg-[#B89952] transition-all"
                     >
                         {t("reviews.moreReviews")}
                     </a>
