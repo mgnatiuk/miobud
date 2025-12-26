@@ -51,7 +51,7 @@ const OffersSection = () => {
         <section id="offers" className="py-32 bg-[#F5F1E8] relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="mb-20">
-                    <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold text-gray-900 mb-8 leading-[1.1]">
+                    <h2 className="text-[2.9rem] md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 leading-[1.1]">
                         {t("offers.sectionTitle") || "Nasza Oferta"}
                     </h2>
                     <p className="text-2xl text-gray-600 max-w-3xl leading-relaxed">
